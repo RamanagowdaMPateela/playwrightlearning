@@ -1,0 +1,8 @@
+{
+  "userName": "John Doe",
+  "validPassword": "ThisIsNotAPassword",
+  "invalidPassword": "TwrongPassword",
+  "age": 30,
+  "email": "johndoe@example.com",
+  "isActive": true
+}
