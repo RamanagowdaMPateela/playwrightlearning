@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test';
+import {TestData} from "../../data/test-data.ts";
+const makeApptmntData = TestData.makeAppointmentTestData();
 
+for(const data of makeApptmntData) {
 test.describe("Make appointment", async () => {
 
     test.beforeEach("Login with valid cred", async ({ page }) => {
@@ -15,13 +18,12 @@ test.describe("Make appointment", async () => {
         await expect(await page.getByRole('heading', { name: 'Make Appointment' })).toBeVisible();
     })
 
-
-    test('Should Make appointment with non Default values', async ({ page }) => {
+    test(`${data.testId}Should Make appointment with non Default values`, async ({ page }) => {
 
         //dropdown- by value, by label, by index
-        await page.getByLabel('Facility').selectOption('Hongkong CURA Healthcare Center');
-        await page.getByLabel('Facility').selectOption({ label: "Seoul CURA Healthcare Center" })
-        await page.getByLabel('Facility').selectOption({ index: 1 });
+        await page.getByLabel('Facility').selectOption(data.facility);
+       // await page.getByLabel('Facility').selectOption({ label: "Seoul CURA Healthcare Center" })
+       // await page.getByLabel('Facility').selectOption({ index: 1 });
 
         let dropDownListOptions = page.getByLabel("Facility").locator('option');
         await expect((dropDownListOptions)).toHaveCount(3);
@@ -36,13 +38,13 @@ test.describe("Make appointment", async () => {
   
 
         //radio btn
-        await page.getByText('Medicaid').click();
+        await page.getByText(data.hcp).click();
 
         //date input 
         await page.getByRole('textbox', { name: 'Visit Date (Required)' }).click();
-        await page.getByRole('cell', { name: '10' }).first().click();
-        await page.getByRole('cell', { name: '10' }).first().click();
-
+        await page.getByRole('textbox', { name: 'Visit Date (Required)' }).fill(data.visitDt);
+        await page.getByRole('textbox', { name: 'Visit Date (Required)' }).press("Enter");
+       
         //comment input bix
         await page.getByRole('textbox', { name: 'Comment' }).click();
         await page.getByRole('textbox', { name: 'Comment' }).fill('This is multi line \ncaptured by playwright');
@@ -56,3 +58,5 @@ test.describe("Make appointment", async () => {
     });
 
 });
+
+}

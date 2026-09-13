@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import userLoginData from "../../data/constant.json";
 
 test.describe("Login Test", () => {
 
@@ -13,23 +14,21 @@ test.describe("Login Test", () => {
     })
 
     test("Test1-login failed", { tag: "@test2" }, async ({ page }, testInfo) => {
-        await page.getByLabel('Username').fill('John Doe');
-        await page.getByLabel('Password').fill('ThisNOtPassword');
+        await page.getByLabel('Username').fill(userLoginData.userName);
+        await page.getByLabel('Password').fill(userLoginData.invalidPassword);
         await page.getByRole('button', { name: 'Login' }).click();
         await expect(page.locator('#login')).toContainText('Login failed! Please ensure the username and password are valid.');
-        let fullPageScreenshot= await page.screenshot({fullPage:true});
-        await testInfo.attach("login page failed", {body:fullPageScreenshot, contentType:"image/png"});
+        let fullPageScreenshot = await page.screenshot({ fullPage: true });
+        await testInfo.attach("login page failed", { body: fullPageScreenshot, contentType: "image/png" });
     });
 
     // ✅1. Fill 📍
     test("Test2-login success", async ({ page }) => {
         // await page.locator('Username').clear();
-        // await page.getByLabel('Username').fill('John Doe');
-         await page.locator('Username').clear();
-        await page.getByLabel('Username').pressSequentially('John Doe', {delay: 300});
-        await page.getByLabel('Password').fill('ThisIsNotAPassword');
+        await page.getByLabel('Username').fill(userLoginData.userName);
+        await page.getByLabel('Password').fill(userLoginData.validPassword);
         await page.getByRole('button', { name: 'Login' }).click();
-        await expect(await page.getByRole('heading',{name:'Make Appointment'})).toBeVisible();
+        await expect(await page.getByRole('heading', { name: 'Make Appointment' })).toBeVisible();
     });
 
 
