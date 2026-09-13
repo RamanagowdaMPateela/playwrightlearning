@@ -15,4 +15,6 @@ export default async function globalSetup(config: FullConfig) {
                 }
         }
 
+        process.env.LOGIN_COOKIES = undefined;
+
 }
