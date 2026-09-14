@@ -3,8 +3,9 @@ import userLoginData from "../../data/constant.json";
 
 test.describe("Login Test", () => {
 
-    test.beforeEach("Go to login page", async ({ page }) => {
-        await page.goto("https://katalon-demo-cura.herokuapp.com/");
+    test.beforeEach("Go to login page", async ({ page }, testInfo) => {
+        const envConfig= testInfo.project.use as any;
+        await page.goto(envConfig.appURL);
         await expect(page).toHaveTitle("CURA Healthcare Service");
         await expect(page.locator("//h1")).toHaveText("CURA Healthcare Service");
         await page.getByRole('link', { name: 'Make Appointment' }).click();
