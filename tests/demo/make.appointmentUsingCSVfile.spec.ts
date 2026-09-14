@@ -1,15 +1,15 @@
 import { test, expect } from '@playwright/test';
-import readCSV from "../helpers/csvReader" 
+import readCSV from "../helpers/csvReader"
 import path from 'path'
 
 const csvFilePath = path.resolve(`${process.cwd()}/data/make-apptmnt-data.csv`);
-const makeApptmntData= readCSV(csvFilePath);
+const makeApptmntData = readCSV(csvFilePath);
 
 for (const data of makeApptmntData) {
     test.describe("Make appointment", async () => {
 
-        test.beforeEach("Login with valid cred", async ({ page },testInfo) => {
-            const envConfig= testInfo.project.use as any;
+        test.beforeEach("Login with valid cred", async ({ page }, testInfo) => {
+            const envConfig = testInfo.project.use as any;
             await page.goto(envConfig.appURL);
             await expect(page).toHaveTitle("CURA Healthcare Service");
             await expect(page.locator("//h1")).toHaveText("CURA Healthcare Service");

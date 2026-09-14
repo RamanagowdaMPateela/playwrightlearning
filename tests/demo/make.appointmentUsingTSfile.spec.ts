@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { TestData } from "../../data/test-data";
+import logger from '../helpers/logger';
 
 const makeApptmntData = TestData.makeAppointmentTestData();
 
@@ -8,7 +9,13 @@ for (const data of makeApptmntData) {
     test.describe("Make appointment", async () => {
 
         test.beforeEach("Login with valid cred", async ({ page }, testInfo) => {
-            const envConfig= testInfo.project.use as any;
+            //base url custom based
+            const envConfig = testInfo.project.use as any;
+
+            //custom log
+            logger.info("app launching in browser ")
+
+
             await page.goto(envConfig.appURL);
 
             await expect(page).toHaveTitle("CURA Healthcare Service");
@@ -17,12 +24,14 @@ for (const data of makeApptmntData) {
             await page.getByRole('link', { name: 'Make Appointment' }).click();
             await expect(page.locator('#login')).toContainText('Please login to make appointment.');
             await page.getByLabel('Username').fill(process.env.TEST_USERNAME);
+            logger.debug("Request payload: { user: 'John Doe' }");
+            //checkbox 
             await page.getByLabel('Password').fill(process.env.TEST_PASSWORD);
             await page.getByRole('button', { name: 'Login' }).click();
-
+            logger.warn("Slow response detected");
             const loginCookies = await page.context().cookies();
             process.env.LOGIN_COOKIES = JSON.stringify(loginCookies);
-
+            logger.warn("Slow response detected");
             await expect(await page.getByRole('heading', { name: 'Make Appointment' })).toBeVisible();
 
         })
@@ -38,7 +47,8 @@ for (const data of makeApptmntData) {
             let dropDownListOptions = page.getByLabel("Facility").locator('option');
             await expect((dropDownListOptions)).toHaveCount(3);
 
-            //checkbox 
+
+
             //  await page.getByText('Apply for hospital readmission').click();
             await page.getByText('Apply for hospital readmission').check();
             await expect(page.getByText('Apply for hospital readmission')).toBeChecked();
