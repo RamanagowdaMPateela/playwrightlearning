@@ -5,9 +5,12 @@ import logger from '../helpers/logger';
 test.describe("Login Test", () => {
 
     test.beforeEach("Go to login page", async ({ page }, testInfo) => {
-        const envConfig = testInfo.project.use as any;
-        await page.goto(envConfig.appURL);
-         logger.info("app launching in browser ")
+        console.log("BaseURL :", await testInfo.project.use.baseURL);
+       // console.log("BaseURL:", await testInfo.project.use.appURL);
+        
+        const envURL= await  testInfo.project.use;
+        await page.goto(envURL.baseURL);
+        logger.info("app launching in browser ")
         await expect(page).toHaveTitle("CURA Healthcare Service");
         await expect(page.locator("//h1")).toHaveText("CURA Healthcare Service");
         await page.getByRole('link', { name: 'Make Appointment' }).click();

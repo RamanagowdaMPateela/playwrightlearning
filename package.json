@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "loginTest": "npx playwright test --config=config/test.playwright.config.ts tests/demo/login.spec.ts --headed --project=chromium",
-    "test:login": "npx playwright test --config=config/test.playwright.config.ts tests/demo/login.spec.ts --headed --project=chromium",
+    "test:loginPOM": "npx playwright test --config=config/test.playwright.config.ts tests/demo/loginpom.spec.ts --headed --project=chromium",
     "dev:login": "npx playwright test --config=config/dev.playwright.config.ts tests/demo/login.spec.ts --headed --project=chromium",
     "loginTestConfig": "npx playwright test --config=config/test.playwright.config.ts --list",
     "appointmentTest": "npx playwright test --config=config/test.playwright.config.ts tests/demo/tests/demo/make.appointmentUsingTSfile.spec.ts --headed --project=chromium",

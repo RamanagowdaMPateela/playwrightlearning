@@ -1,7 +1,11 @@
 {
+  "pageTitle":"CURA Healthcare Service",
+  "loginHeading":"Please login to make appointment.",
   "userName": "John Doe",
   "validPassword": "ThisIsNotAPassword",
   "invalidPassword": "TwrongPassword",
+  "expectedUrl":"https://katalon-demo-cura.herokuapp.com/#appointment",
+  "loginFailedMsg":"Login failed! Please ensure the username and password are valid.",
   "age": 30,
   "email": "johndoe@example.com",
   "isActive": true

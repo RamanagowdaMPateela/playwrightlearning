@@ -7,6 +7,7 @@ import {EnvConfig} from "../tests/helpers/config-fixtures.ts"
 export default defineConfig<EnvConfig>({
  ...baseConfig, //loads all existing config devices
  testDir:path.resolve(process.cwd(), "./tests"),
+ 
  use: {
     ...baseConfig.use,
     envName:"Test",
@@ -16,7 +17,8 @@ export default defineConfig<EnvConfig>({
         dbName:"",
         connectionStr: "",
 
-     }
+     },
+     baseURL: "https://katalon-demo-cura.herokuapp.com/"
  },
 
 });
