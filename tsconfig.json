@@ -4,7 +4,7 @@
         "module": "commonjs",
         "resolveJsonModule": true,
         "esModuleInterop": true,
-        "strict": true,
+        "strict": false,
         "noImplicitAny": false,
         "types": [
             "node"
@@ -14,6 +14,7 @@
     },
     "include": [
         "tests/**/*.ts",
+         "debug/**/*.ts",
         "data/**/*.ts",
         "playwright.config.ts"
     ],

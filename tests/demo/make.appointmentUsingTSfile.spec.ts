@@ -1,19 +1,23 @@
 import { test, expect } from '@playwright/test';
-import { TestData } from "../../data/test-data.ts";
+import { TestData } from "../../data/test-data";
+
 const makeApptmntData = TestData.makeAppointmentTestData();
+
 
 for (const data of makeApptmntData) {
     test.describe("Make appointment", async () => {
 
-        test.beforeEach("Login with valid cred", async ({ page }) => {
-            await page.goto("https://katalon-demo-cura.herokuapp.com/");
+        test.beforeEach("Login with valid cred", async ({ page }, testInfo) => {
+            const envConfig= testInfo.project.use as any;
+            await page.goto(envConfig.appURL);
+
             await expect(page).toHaveTitle("CURA Healthcare Service");
             await expect(page.locator("//h1")).toHaveText("CURA Healthcare Service");
 
             await page.getByRole('link', { name: 'Make Appointment' }).click();
             await expect(page.locator('#login')).toContainText('Please login to make appointment.');
-            await page.getByLabel('Username').fill('John Doe');
-            await page.getByLabel('Password').fill('ThisIsNotAPassword');
+            await page.getByLabel('Username').fill(process.env.TEST_USERNAME);
+            await page.getByLabel('Password').fill(process.env.TEST_PASSWORD);
             await page.getByRole('button', { name: 'Login' }).click();
 
             const loginCookies = await page.context().cookies();
