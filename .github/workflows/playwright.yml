@@ -19,6 +19,8 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npm run test:loginPOM
+    - name: Run Appointment POM tests
+      run: npm run test:makeApptmntPOM
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
