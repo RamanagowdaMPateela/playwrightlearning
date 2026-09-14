@@ -13,11 +13,8 @@ for (const data of makeApptmntData) {
             const envConfig = testInfo.project.use as any;
 
             //custom log
-            logger.info("app launching in browser ")
-
-
+    
             await page.goto(envConfig.appURL);
-
             await expect(page).toHaveTitle("CURA Healthcare Service");
             await expect(page.locator("//h1")).toHaveText("CURA Healthcare Service");
 
