@@ -7,11 +7,12 @@ export default async function globalSetup(config: FullConfig) {
         if (process.env.RUNNER?.toUpperCase() === "LOCAL") {
                 console.info("running on local-setup")
 
-                const resultDir = path.resolve(process.cwd(), 'allure-result');
-                console.log(resultDir);
+                const allureDirectories = ['allure-results', 'allure-report'];
 
-                if (fs.existsSync(resultDir)) {
-                        fs.rmSync(resultDir, { recursive: true, force: true })
+                for (const directory of allureDirectories) {
+                        const directoryPath = path.resolve(process.cwd(), directory);
+                        console.log(`Cleaning ${directoryPath}`);
+                        fs.rmSync(directoryPath, { recursive: true, force: true });
                 }
         }
 
