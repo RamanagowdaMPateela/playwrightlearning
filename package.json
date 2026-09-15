@@ -4,6 +4,7 @@
   "description": "Playwright with Typescript",
   "main": "index.js",
   "scripts": {
+    "test:apiTest": "npx playwright test --config=config/test.playwright.config.ts tests/api/user.api.spec.ts --project=api",
     "loginTest": "npx playwright test --config=config/test.playwright.config.ts tests/demo/login.spec.ts --headed --project=chromium",
     "test:loginPOM": "npx playwright test --config=config/test.playwright.config.ts tests/e2e/loginpom.spec.ts --project=chromium",
     "test:makeApptmntPOM": "npx playwright test --config=config/test.playwright.config.ts tests/e2e/make.appointmentUsingCSVfile.spec.ts --project=chromium",

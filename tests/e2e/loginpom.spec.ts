@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
 import userLoginData from "../../data/constant.json";
 import logger from '../helpers/logger';
-
 import LoginPage from '../page-objects/login.page';
+import PwHelper from '../helpers/pw-helper';
 
 
 test.describe("Login Test", () => {
@@ -22,6 +22,9 @@ test.describe("Login Test", () => {
          const loginPage = new LoginPage(page);
          await loginPage.login(userLoginData.userName,userLoginData.invalidPassword);
          await loginPage.assertLoginFailed(userLoginData.loginFailedMsg);  
+         const pwHelper = new PwHelper(page);
+         await pwHelper.takeFullPageScreenshot("login page");
+          logger.info("login failed errro message dispalyed ");
     });
 
     test("Test- login success", async ({ page }) => {
