@@ -12,6 +12,8 @@
     "loginTestConfig": "npx playwright test --config=config/test.playwright.config.ts --list",
     "appointmentTest": "npx playwright test --config=config/test.playwright.config.ts tests/demo/tests/demo/make.appointmentUsingTSfile.spec.ts --headed --project=chromium",
     "appointmentTestCSV": "npx playwright test --config=config/test.playwright.config.ts tests/demo/make.appointmentUsingCSVfile.spec.ts --headed --project=chromium",
+    "multiWindowsTest": "npx playwright test --config=config/test.playwright.config.ts tests/demo/multi.windows.spec.ts --headed --project=chromium",
+    "multiWindowsTestPOM": "npx playwright test --config=config/test.playwright.config.ts tests/e2e/multi.windows.pom.spec.ts --headed --project=chromium",
     "debugTest": "cross-env DEBUG=pw:api DEBUG=pw:api npx playwright test tests/demo/login.spec.ts --headed --project=chromium",
     "report": "npx allure generate ./allure-results --clean -o ./allure-report && npx allure open ./allure-report"
   },
