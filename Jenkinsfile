@@ -22,10 +22,14 @@ pipeline {
 
         stage('Build') {
             steps {
+                bat 'rmdir /s /q allure-results'   // delete old results
+                bat 'mkdir allure-results'         // recreate folder
                 bat 'npm ci'
                 bat 'npx playwright install'
             }
         }
+
+
 
         stage('Tests') {
             steps {
