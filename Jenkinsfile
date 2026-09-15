@@ -1,8 +1,8 @@
 pipeline {
     agent any
     tools {
-        nodejs "NodeJS22"   // Make sure you configured NodeJS 22 in Jenkins global tools
-        allure "Allure"      // Make sure you configured Allure in Jenkins global tools
+        nodejs "node24"   // Make sure you configured NodeJS 22 in Jenkins global tools
+        allure "allure"      // Make sure you configured Allure in Jenkins global tools
     }
     options {
         timeout(time: 30, unit: 'MINUTES')   // Job timeout
