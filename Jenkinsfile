@@ -22,30 +22,22 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh '''
-                  set -eu   
-                    npm ci
-                    npx playwright install
-                '''
+                bat 'npm ci'
+                bat 'npx playwright install'
             }
         }
 
         stage('Tests') {
             steps {
-                sh '''
-                  export TEST_USERNAME="${TEST_CRED_USR}"
-                  export TEST_PASSWORD="${TEST_CRED_PSW}"
-                    npx playwright test
-                '''
+                bat 'npx playwright test --reporter=allure-playwright'
             }
         }
 
         stage('Generate Allure Report') {
             steps {
-                sh '''
-                  set -eu   
-                    npx allure generate ./allure-results --clean -o ./allure-report
-                '''
+                
+                 bat 'npx allure generate ./allure-results --clean -o ./allure-report'
+                
             }
         }
 
