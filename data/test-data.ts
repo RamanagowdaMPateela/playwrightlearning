@@ -21,4 +21,15 @@ export class TestData {
             }
         ]
     }
+
+    static apiUserCreation() {
+        return [
+            {
+                "name": "morpheus",
+                "job": "leader"
+            }
+        ]
+    }
+
+
 }

@@ -18,7 +18,9 @@ export default defineConfig<EnvConfig>({
         connectionStr: "",
 
      },
-     baseURL: "https://katalon-demo-cura.herokuapp.com/"
+     apiURL: "https://reqres.in/api",
+     baseURL: "https://katalon-demo-cura.herokuapp.com/",
+
  },
 
 });

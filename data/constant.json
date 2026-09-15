@@ -8,5 +8,17 @@
   "loginFailedMsg":"Login failed! Please ensure the username and password are valid.",
   "age": 30,
   "email": "johndoe@example.com",
-  "isActive": true
+  "isActive": true,
+  "GET_STATUS_CODE":{
+    "success": 200,
+    "validationError":700
+  },
+ "POST_STATUS_CODE":{
+    "success": 201,
+    "validationError":400
+  },
+  "REQ_RES_ENDPOINTS":{
+    "GET_USER_LIST": "/users?page=2",
+    "POST_USER": "users"
+   }
 }

@@ -61,6 +61,11 @@ export const baseConfig= defineConfig({
       use: { ...devices['Desktop Safari'] },
     },
 
+      {
+      name: 'api',
+      testMatch: ['**/tests/api/**/*.spec.ts'], // ✅ only API tests
+    },
+
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
