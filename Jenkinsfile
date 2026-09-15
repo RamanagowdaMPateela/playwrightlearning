@@ -29,7 +29,7 @@ pipeline {
 
         stage('Tests') {
             steps {
-                bat 'npx playwright test --reporter=allure-playwright'
+                bat 'npm run test:loginPOM'
             }
         }
 
